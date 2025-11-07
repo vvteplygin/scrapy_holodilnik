@@ -121,7 +121,7 @@ class HolodilnikProductDetailsSpider(RedisSpider):
         item['url'] = response.request.url
         item['responseUrl'] = response.url
         item['statusCode'] = response.status
-        item["playgroundId"] = 10
+        item["playgroundId"] = 3
         item["groupId"] = response.meta["attrs"]["groupId"]
         item["productUrl"] = response.request.url
         item["imageUrls"] = images

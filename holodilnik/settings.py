@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+
 # This file houses all default settings for the Crawler
 # to override please use a custom localsettings.py file
 
@@ -20,7 +21,7 @@ KAFKA_APPID_TOPICS = True
 KAFKA_BASE_64_ENCODE = False
 KAFKA_PRODUCER_BATCH_LINGER_MS = 25  # 25 ms before flush
 KAFKA_PRODUCER_BUFFER_BYTES = 4 * 1024 * 1024  # 4MB before blocking
-KAFKA_PRODUCER_MAX_REQUEST_SIZE = 1024 * 1024 # 1MB
+KAFKA_PRODUCER_MAX_REQUEST_SIZE = 1024 * 1024  # 1MB
 
 ZOOKEEPER_ASSIGN_PATH = '/scrapy-cluster/crawler/'
 ZOOKEEPER_ID = 'all'
@@ -128,7 +129,6 @@ BOT_NAME = 'holodilnik'
 SPIDER_MODULES = ['holodilnik.spiders']
 NEWSPIDER_MODULE = 'holodilnik.spiders'
 
-
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
 
@@ -208,11 +208,11 @@ DOWNLOAD_TIMEOUT = 100
 # Avoid in-memory DNS cache. See Advanced topics of docs for info
 DNSCACHE_ENABLED = True
 
-ROTATING_PROXY_LIST = ['https://w3e1vb:h3AYFJ@196.18.181.61:8000', 'https://w3e1vb:h3AYFJ@196.18.183.147:8000',
-                       'https://w3e1vb:h3AYFJ@196.18.180.242:8000', 'https://w3e1vb:h3AYFJ@196.18.182.50:8000',
-                       'https://w3e1vb:h3AYFJ@196.18.182.251:8000', 'https://w3e1vb:h3AYFJ@196.18.183.81:8000',
-                       'https://w3e1vb:h3AYFJ@196.18.180.132:8000', 'https://w3e1vb:h3AYFJ@196.18.182.191:8000',
-                       'https://w3e1vb:h3AYFJ@196.18.183.73:8000', 'https://w3e1vb:h3AYFJ@196.18.180.37:8000']
+ROTATING_PROXY_LIST = ['https://Nu7uAW:j2DA5j@185.39.148.151:8000', 'https://yLdbM9:PQBrZz@147.45.53.92:9945',
+                       'https://yLdbM9:PQBrZz@217.106.239.165:9187', 'https://yLdbM9:PQBrZz@81.177.180.161:9998',
+                       'https://yLdbM9:PQBrZz@81.177.181.89:9934', 'https://yLdbM9:PQBrZz@185.66.14.222:9892',
+                       'https://yLdbM9:PQBrZz@81.176.239.20:9815', 'https://yLdbM9:PQBrZz@81.177.23.117:9356',
+                       'https://yLdbM9:PQBrZz@185.66.13.96:9462', 'https://yLdbM9:PQBrZz@45.11.125.209:9958']
 # ~~~~~~~~~~~~~~~ #
 # Local Overrides #
 # ~~~~~~~~~~~~~~~ #

@@ -46,7 +46,7 @@ class HolodilnikMenuSpider(RedisSpider):
                     item['url'] = response.request.url
                     item['responseUrl'] = response.url
                     item['statusCode'] = response.status
-                    item["playgroundId"] = 10
+                    item["playgroundId"] = 3
                     item["groupCategoryName"] = menu_title
                     item["groupName"] = cat_title
                     item["groupUrl"] = url

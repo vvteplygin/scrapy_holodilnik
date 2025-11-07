@@ -21,20 +21,20 @@ class HolodilnikProductsSpider(RedisSpider):
     name = 'HolodilnikProducts'
     allowed_domains = ['holodilnik.ru']
 
-    def start_requests(self):
-        yield Request('https://www.holodilnik.ru/small_domestic/hoods/',
-                      callback=self.parse,
-                      meta={
-                          'appid': 'products',
-                          'spiderid': 'HolodilnikProducts',
-                          'expires': 0, 'priority': 1,
-                          'crawlid': 'f75111d9-3e2f-43f0-970a-112021026631',
-                          'domain_max_pages': 100,
-                          'attrs': {
-                              'page': 1,
-                              'groupId': 100
-                          }
-                      }, dont_filter=True)
+    # def start_requests(self):
+    #     yield Request('https://www.holodilnik.ru/small_domestic/hoods/',
+    #                   callback=self.parse,
+    #                   meta={
+    #                       'appid': 'products_ru',
+    #                       'spiderid': 'HolodilnikProducts',
+    #                       'expires': 0, 'priority': 1,
+    #                       'crawlid': 'f75111d9-3e2f-43f0-970a-112021026631',
+    #                       'domain_max_pages': 100,
+    #                       'attrs': {
+    #                           'page': 1,
+    #                           'groupId': 100
+    #                       }
+    #                   }, dont_filter=True)
 
     def __init__(self, *args, **kwargs):
         gc.set_threshold(100, 3, 3)
@@ -131,7 +131,7 @@ class HolodilnikProductsSpider(RedisSpider):
             item['url'] = response.request.url
             item['responseUrl'] = response.url
             item['statusCode'] = response.status
-            item["playgroundId"] = 10
+            item["playgroundId"] = 3
             item["groupId"] = response.meta["attrs"]["groupId"]
             item["productUrl"] = base + prod_url
             item["price"] = price
