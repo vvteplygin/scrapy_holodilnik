@@ -181,8 +181,13 @@ SPIDER_MIDDLEWARES = {
 
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 
+DOWNLOAD_HANDLERS = {
+    "https": "bhfutils.crawler.playwright.handler.ScrapyPlaywrightDownloadHandler",
+}
+
 DOWNLOADER_MIDDLEWARES = {
     # Handle timeout retries with the redis scheduler and logger
+    'holodilnik.middlewares.HolodilnikDownloadMiddleware': 800,
     'scrapy.downloadermiddlewares.retry.RetryMiddleware': None,
     'bhfutils.crawler.redis_retry_middleware.RedisRetryMiddleware': 510,
     # exceptions processed in reverse order
@@ -207,6 +212,69 @@ DOWNLOAD_TIMEOUT = 100
 
 # Avoid in-memory DNS cache. See Advanced topics of docs for info
 DNSCACHE_ENABLED = True
+
+# Playwright
+PLAYWRIGHT_BROWSER_TYPE = 'firefox'
+PLAYWRIGHT_LAUNCH_OPTIONS = {
+}
+PLAYWRIGHT_STATIC_CONTEXT = {
+    "extra_http_headers": {
+        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+        'accept-encoding': 'gzip, deflate, br',
+        'cache-control': 'max-age=0',
+        'sec-ch-ua-mobile': '?0',
+        'sec-fetch-dest': 'document',
+        'sec-fetch-mode': 'navigate',
+        'sec-fetch-site': 'none',
+        'sec-fetch-user': '?1',
+        'upgrade-insecure-requests': '1',
+    },
+    "locale": "ru-RU",
+    "java_script_enabled": True
+}
+PLAYWRIGHT_DYNAMIC_CONTEXTS = [
+    {
+        "user_agent": "Mozilla/5.0 (X11; Linux x86_64; rv:137.0) Gecko/20100101 Firefox/137.0"
+    },
+    {
+        "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+    },
+    {
+        "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36"
+    },
+    {
+        "user_agent": "Mozilla/5.0 (X11; Linux x86_64; rv:136.0) Gecko/20100101 Firefox/136.0"
+    },
+    {
+        "user_agent": "Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0"
+    },
+    {
+        "user_agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:136.0) Gecko/20100101 Firefox/136.0"
+    },
+    {
+        "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36"
+    },
+    {
+        "user_agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:137.0) Gecko/20100101 Firefox/137.0"
+    },
+    {
+        "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+    },
+    {
+        "user_agent": "Mozilla/5.0 (X11; Linux x86_64; rv:135.0) Gecko/20100101 Firefox/135.0"
+    },
+    {
+        "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36"
+    },
+    {
+        "user_agent": "Mozilla/5.0 (X11; Linux x86_64; rv:138.0) Gecko/20100101 Firefox/138.0"
+    },
+    {
+        "user_agent": "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/119.0"
+    }
+]
+PLAYWRIGHT_ABORT_REQUEST = lambda req: req.resource_type == "image"
+PLAYWRIGHT_PROCESS_REQUEST_HEADERS = "bhfutils.crawler.playwright.headers.use_playwright_headers"
 
 ROTATING_PROXY_LIST = ['https://w3e1vb:h3AYFJ@196.18.181.61:8000', 'https://w3e1vb:h3AYFJ@196.18.183.147:8000',
                        'https://w3e1vb:h3AYFJ@196.18.180.242:8000', 'https://w3e1vb:h3AYFJ@196.18.182.50:8000',
